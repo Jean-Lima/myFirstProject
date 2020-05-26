@@ -20,6 +20,11 @@ class MainActivity : AppCompatActivity() {
             val novaTela = Intent(this, HomeActivity::class.java)
             startActivity(novaTela)
         }
+
+        cadastro.setOnClickListener {
+            val telaCadastral = Intent(this, RegisterActivity::class.java)
+            startActivity(telaCadastral)
+        }
     }
 }
 

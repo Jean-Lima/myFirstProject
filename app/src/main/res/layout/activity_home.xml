@@ -7,6 +7,13 @@
     android:background="#4059D5"
     tools:context=".HomeActivity">
 
+    <include
+        layout="@layout/include_toolbar"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"

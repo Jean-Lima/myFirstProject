@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.include_toolbar.*
 
-class HomeActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_register)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = "BEM VINDO"
+        supportActionBar?.title = "CADASTRO"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.drawable.background_toolbar))
     }
 }
