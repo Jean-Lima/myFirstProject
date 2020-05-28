@@ -5,10 +5,14 @@ import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log.d
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
 class RegisterActivity : AppCompatActivity() {
+    var language: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +23,9 @@ class RegisterActivity : AppCompatActivity() {
         supportActionBar?.setBackgroundDrawable(getDrawable(R.drawable.background_toolbar))
 
         initButton()
+
+        initSpinner()
+
     }
 
     private fun initButton() {
@@ -37,7 +44,6 @@ class RegisterActivity : AppCompatActivity() {
         var confirmPassword: String? = confirmPasswordInput.text.toString()
         var email: String? = emailInput.text.toString()
         var cpf: String? = cpfInput.text.toString()
-        var language: String? = null
 
         if (password != confirmPassword) {
             return errorDialog("As senhas devem combinar")
@@ -99,4 +105,34 @@ class RegisterActivity : AppCompatActivity() {
             .create()
             .show()
     }
+
+    private fun initSpinner(){
+        val languages = arrayOf(
+            "Portugues",
+            "Ingles",
+            "Espanhol"
+        )
+
+        spinnerLanguage.adapter = ArrayAdapter (
+            this,
+            android.R.layout.simple_spinner_item,
+            languages
+        )
+
+        spinnerLanguage.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                language = languages[position]
+            }
+
+        }
+
+    }
+
 }
