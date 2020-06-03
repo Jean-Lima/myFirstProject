@@ -31,25 +31,9 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.title = "BEM VINDO"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        request()
+
 
     }
 
-    fun request() {
-        Api().retrofit.create(ApiInterface::class.java).getList()
-            .enqueue(object : Callback<List<PostModel>> {
-                override fun onFailure(call: Call<List<PostModel>>, t: Throwable) {
-                    d("testando", "falhou")
-                }
 
-                override fun onResponse(
-                    call: Call<List<PostModel>>,
-                    response: Response<List<PostModel>>
-                ) {
-                    var lista = response.body()
-                    var test = lista
-                }
-
-            })
-    }
 }
