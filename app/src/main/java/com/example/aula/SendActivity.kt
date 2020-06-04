@@ -3,9 +3,9 @@ package com.example.aula
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log.d
-import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_send.*
-import kotlinx.android.synthetic.main.include_toolbar.*
 import kotlinx.android.synthetic.main.include_toolbar.toolbar
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,15 +26,6 @@ class SendActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    fun initList(lista: List<String?>) {
-
-        listview.adapter = ArrayAdapter(
-            this,
-            R.layout.adapter_compras,
-            lista
-        )
-
-    }
 
     fun request() {
         Api().retrofit.create(ApiInterface::class.java).getList()
@@ -48,14 +39,17 @@ class SendActivity : AppCompatActivity() {
                     response: Response<List<PostModel>>
                 ) {
                     var lista = response.body()
-                    lista?.let { lista ->
-                        var list: List<String?> = lista.map { it.title }
-                        initList(list)
-                    }
-
+                    initAdapter(lista)
                 }
 
             })
+    }
+
+    private fun initAdapter(lista: List<PostModel>?) {
+        val recyclerView = listview
+        recyclerView.adapter = SendAdapter(lista!!)
+        val layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
+        recyclerView.layoutManager = layoutManager
     }
 
 }
