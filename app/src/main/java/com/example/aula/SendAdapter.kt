@@ -7,11 +7,12 @@ import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.adapter_compras.view.*
 
-class SendAdapter(private val list: List<PostModel>) : RecyclerView.Adapter<SendAdapter.ViewHolder>(){
+class SendAdapter(private val list: List<PostModel>, var selectItem: (PostModel) -> Unit) : RecyclerView.Adapter<SendAdapter.ViewHolder>(){
 
     class   ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title = itemView.textlist
         val description = itemView.description
+        val myPost = itemView.myPost
 
 
     }
@@ -29,6 +30,10 @@ class SendAdapter(private val list: List<PostModel>) : RecyclerView.Adapter<Send
         val post = list [position]
         holder.title.text = post.title
         holder.description.text = post.body
+        holder.myPost.setOnClickListener {
+            selectItem(list[position])
+
+        }
 
     }
 

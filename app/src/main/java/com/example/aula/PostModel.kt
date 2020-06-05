@@ -1,6 +1,7 @@
 package com.example.aula
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class PostModel(
     @SerializedName("userId")
@@ -16,4 +17,5 @@ class PostModel(
     var body: String? = null
 
 
-)
+):Serializable
+
